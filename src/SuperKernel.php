@@ -75,7 +75,7 @@ abstract class SuperKernel extends Sf\HttpKernel\Kernel implements SuperKernelIn
         $kernel->terminate($request, $response);
     }
 
-    public function enableCache(array $cacheOptions = [], string $cacheDir = null): self
+    public function enableCache(array $cacheOptions = [], string $cacheDir = null): SuperKernel
     {
         if( ! class_exists('Symfony\Bundle\FrameworkBundle\HttpCache\HttpCache')) {
             throw new \RuntimeException('symfony/framework-bundle is required in order to run CacheKernel.');
@@ -85,7 +85,7 @@ abstract class SuperKernel extends Sf\HttpKernel\Kernel implements SuperKernelIn
         return $this;
     }
 
-    public function enableProductionEnvironment(array $cacheOptions = [], string $cacheDir = null): self
+    public function enableProductionEnvironment(array $cacheOptions = [], string $cacheDir = null): SuperKernel
     {
         $this->enableCache($cacheOptions, $cacheDir);
         $this->environment = self::ENV_PROD;
